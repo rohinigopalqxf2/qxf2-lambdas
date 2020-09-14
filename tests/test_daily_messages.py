@@ -16,5 +16,7 @@ def test_write_message_valid():
     expected_message = str({'msg':f'{skype_message}', 'channel':channel})
     daily_messages.write_message(skype_message, channel)
     sqs_messages = queue.receive_messages()
-    assert len(sqs_messages) == 1
-    assert sqs_messages[0].body == expected_message
+    assert len(sqs_messages) == 1, 'Expected exactly one message in SQS'
+    print(f'\nExactly one message in skype-sender SQS')
+    assert sqs_messages[0].body == expected_message, 'Message in skype-sender does not match expected'
+    print(f'The message in skype-sender SQS matches what we sent')
