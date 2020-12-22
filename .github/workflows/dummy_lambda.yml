@@ -2,7 +2,7 @@ name: deploy-dummy-lambda
 on:
   push:
     branches:
-      - opencv-installer 
+      - opencv-installer
     paths:
       - 'dummy_lambda/**'
 jobs:
@@ -14,8 +14,8 @@ jobs:
       uses: qxf2/py-lambda-action@v1.0.2
       with:
         lambda_directory: 'dummy_lambda'
-        lambda_function_name: arn:aws:lambda:ap-south-1:285993504765:function:dummyLambda
-	lambda_layer_arn: arn:aws:lambda:ap-south-1:285993504765:layer:opencv
+        lambda_function_name: 'arn:aws:lambda:ap-south-1:285993504765:function:dummyLambda'
+        lambda_layer_arn: 'arn:aws:lambda:ap-south-1:285993504765:layer:opencv'
         requirements_txt: 'dummy_lambda/requirements.txt'
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
