@@ -6,6 +6,7 @@ import json
 import os
 import boto3
 import requests
+import re
 IS_PTO_URL = 'https://practice-testing-ai-ml.qxf2.com/is-pto'
 QUEUE_URL = 'https://sqs.ap-south-1.amazonaws.com/285993504765/skype-sender'
 
@@ -13,6 +14,8 @@ def clean_message(message):
     "Clean up the message received"
     message = message.replace("'", '-')
     message = message.replace('"', '-')
+    #message = message.replace('<', '-')
+    message = re.sub(r'^<.*', '', message) #markdown message
 
     return message
 
